@@ -1,216 +1,104 @@
-# 🏏 HandCricket Arena
+# HandCricket Arena Monorepo
 
-> A production-quality real-time multiplayer Hand Cricket web game featuring animated SVG hands, synchronized gameplay, private room matchmaking, and a modern glassmorphic interface.
+Welcome to **HandCricket Arena**, a real-time multiplayer Web socket-based recreation of the classic Hand Cricket game! 
 
-![Status](https://img.shields.io/badge/status-active-success)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)
-![Socket.io](https://img.shields.io/badge/Socket.io-Realtime-black?logo=socketdotio)
-![Express](https://img.shields.io/badge/Express.js-Backend-000000?logo=express)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?logo=tailwindcss)
+This repository is structured as an **npm Workspaces Monorepo** optimized for independent development and deployment of the frontend and backend.
 
 ---
 
-## 📖 Overview
+## Directory Architecture
 
-HandCricket Arena is a modern multiplayer recreation of the classic Hand Cricket game.
-
-Instead of displaying numbers, players compete using beautifully animated vector hands that reveal finger gestures simultaneously, creating the feeling of sitting across a table playing Hand Cricket with a friend.
-
-The game focuses on smooth gameplay, synchronized multiplayer, premium animations, and an instant-play experience without requiring accounts or authentication.
-
----
-
-## ✨ Features
-
-- 🎮 Real-time multiplayer gameplay
-- 🤝 Private room-based matchmaking
-- ✋ Animated SVG hand reveal system
-- 🎲 Coin toss with batting/bowling selection
-- ⚡ Server-authoritative game logic
-- 🔄 Automatic reconnection handling
-- 📊 Match history and player statistics
-- 🔊 Procedural audio using the Web Audio API
-- 📱 Fully responsive interface
-- 🌙 Modern glassmorphic dark theme
-- 🎉 Victory celebrations and smooth animations
-
----
-
-## 🎯 Gameplay
-
-1. Enter your nickname
-2. Create a private room
-3. Share the room code with a friend
-4. Friend joins using the room code
-5. Complete the coin toss
-6. Choose to bat or bowl
-7. Secretly select numbers from **1–6**
-8. Both hands reveal simultaneously
-9. Continue until both innings finish
-10. The highest score wins
-
----
-
-## 🧩 Core Gameplay Flow
-
-```text
-Landing
-    │
-    ▼
-Choose Nickname
-    │
-    ▼
-Dashboard
-    │
- ┌──┴──────────────┐
- │                 │
- ▼                 ▼
-Create Room     Join Room
- │                 │
- └──────┬──────────┘
-        ▼
-Private Lobby
-        │
-        ▼
-Coin Toss
-        │
-        ▼
-Bat / Bowl Selection
-        │
-        ▼
-First Innings
-        │
-        ▼
-Second Innings
-        │
-        ▼
-Results
-        │
-        ▼
-Play Again / Return Lobby
+```
+HandCricket-Arena/
+├── client/                 # React + Vite Client (Deployed to Vercel)
+│   ├── .env.example        # Client environment template
+│   ├── package.json        # Client dependencies & scripts
+│   ├── tsconfig.json       # Client TypeScript configurations
+│   ├── vite.config.ts      # Vite configuration
+│   ├── src/                # Frontend codebase
+│   └── public/             # Static frontend assets
+│
+├── server/                 # Express + Socket.io Server (Deployed to Railway)
+│   ├── .env.example        # Server environment template
+│   ├── package.json        # Server dependencies & scripts
+│   ├── tsconfig.json       # Server TypeScript configurations
+│   └── src/                # Backend codebase
+│
+├── shared/                 # Shared Workspace (Single Source of Truth for Types)
+│   ├── package.json        # Shared workspace config
+│   ├── tsconfig.json       # Shared TypeScript configuration
+│   └── src/                # Sibling-resolvable type files
+│
+├── package.json            # Lightweight root workspaces configuration
+└── README.md               # Monorepo setup guide
 ```
 
 ---
 
-## 🎨 Design Highlights
+## Local Setup & Development
 
-- Premium dark gaming aesthetic
-- Glassmorphism UI
-- Neon cyan accents
-- Smooth page transitions
-- Animated score updates
-- SVG hand rig with articulated fingers
-- Responsive layouts
-- Mobile-friendly controls
-
----
-
-## 🛠 Tech Stack
-
-### Frontend
-
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- Socket.io Client
-
-### Backend
-
-- Node.js
-- Express
-- Socket.io
-
-### Graphics
-
-- SVG
-- CSS Animations
-- Tailwind CSS
-
-### Audio
-
-- Web Audio API
-- Procedural synthesized sound effects
-
----
-
-## ⚙️ Project Structure
-
-```text
-HandCricket Arena/
-├── server/
-├── src/
-│   ├── components/
-│   ├── hooks/
-│   ├── utils/
-│   ├── views/
-│   └── assets/
-├── public/
-└── ...
-```
-
----
-
-## 🚀 Getting Started
-
-### Clone
-
-```bash
-git clone https://github.com/<your-username>/HandCricket-Arena.git
-```
-
-### Install
-
+### 1. Installation
+Install all dependencies for all workspaces (`client`, `server`, and `shared`) with a single command from the root:
 ```bash
 npm install
 ```
 
-### Development
+### 2. Configure Environment Variables
+Create local environment files for both packages.
 
+**For the Client (`/client/.env`)**:
+```env
+VITE_SERVER_URL=http://localhost:3000
+```
+
+**For the Server (`/server/.env`)**:
+```env
+PORT=3000
+CLIENT_URL=http://localhost:5173
+```
+
+### 3. Run Development Servers
+Launch both the frontend client and the backend server concurrently from the root directory:
 ```bash
 npm run dev
 ```
+Alternatively, you can run workspaces independently:
+*   Frontend: `npm run client` (or `npm run dev` inside `client/`)
+*   Backend: `npm run server` (or `npm run dev` inside `server/`)
 
-### Production Build
+---
 
+## Production Builds
+
+Before deploying, verify that both workspaces compile and build independently:
 ```bash
-npm run build
+npm run build:all
 ```
+This runs:
+*   `npm run build --workspace=@handcricket/client`: Compiles the React client using `tsc` and bundles assets inside `/client/dist`.
+*   `npm run build --workspace=@handcricket/server`: Compiles the server codebase using `tsc` to `/server/dist` for a production Node.js runtime (no dependency on `tsx` watch mode).
 
 ---
 
-## 📈 Roadmap
+## Deployment Guide
 
-- [x] Multiplayer room system
-- [x] Server-authoritative gameplay
-- [x] Animated SVG hand engine
-- [x] Match statistics
-- [x] Audio engine
-- [ ] AI opponent
-- [ ] Best-of-3 matches
-- [ ] Unlockable hand themes
-- [ ] Spectator mode
-- [ ] Online leaderboard
+This workspace configuration is optimized for separate deployments:
 
----
+### Frontend (e.g., Vercel)
+1.  Import this repository into Vercel.
+2.  Set the **Root Directory** option to `client`.
+3.  Configure the build commands:
+    *   **Build Command**: `npm run build`
+    *   **Output Directory**: `dist`
+4.  Define environment variables:
+    *   `VITE_SERVER_URL`: URL of your deployed backend (e.g. `https://your-backend.railway.app`).
 
-## 🤝 Contributing
-
-Contributions, suggestions, and feature requests are welcome.
-
-Please open an issue before submitting major changes.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-## 👨‍💻 Author
-
-**Shourjya Chakraborty**
-
-Built with ❤️ using React, TypeScript, Express, Socket.io, Tailwind CSS, and lots of coffee.
+### Backend (e.g., Railway)
+1.  Import this repository into Railway.
+2.  Configure the **Root Directory** or build command to run inside `server/`.
+3.  Configure the startup commands:
+    *   **Build Command**: `npm run build`
+    *   **Start Command**: `npm run start` (which executes `node dist/index.js`)
+4.  Define environment variables:
+    *   `PORT`: `3000` (automatically injected by Railway)
+    *   `CLIENT_URL`: URL of your deployed frontend (e.g. `https://your-app.vercel.app`).
