@@ -1,0 +1,49 @@
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tsconfig.json', LF will be replaced by CRLF the next time Git touches it
+ .gitignore                         |   25 [32m+[m[31m-[m
+ .oxlintrc.json                     |    8 [31m-[m
+ README.md                          |  262 [32m+++[m[31m-----[m
+ index.html                         |   14 [31m-[m
+ package-lock.json                  | 1306 [32m++++[m[31m--------------------------------[m
+ package.json                       |   52 [32m+[m[31m-[m
+ postcss.config.js                  |    6 [31m-[m
+ public/favicon.svg                 |    1 [31m-[m
+ public/icons.svg                   |   24 [31m-[m
+ server/index.ts                    |   73 [31m--[m
+ server/roomManager.ts              |  321 [31m---------[m
+ server/socketHandler.ts            |  292 [31m--------[m
+ server/stateMachine.ts             |  348 [31m----------[m
+ server/types.ts                    |   79 [31m---[m
+ src/App.css                        |  184 [31m-----[m
+ src/App.tsx                        |  200 [31m------[m
+ src/assets/hero.png                |  Bin [31m13057[m -> [32m0[m bytes
+ src/assets/react.svg               |    1 [31m-[m
+ src/assets/vite.svg                |    1 [31m-[m
+ src/components/AudioSettings.tsx   |  156 [31m-----[m
+ src/components/ConnectionAlert.tsx |  163 [31m-----[m
+ src/components/MatchTimeline.tsx   |   82 [31m---[m
+ src/components/RiggedHand.tsx      |  300 [31m---------[m
+ src/components/Scoreboard.tsx      |   71 [31m--[m
+ src/components/Skeletons.tsx       |  102 [31m---[m
+ src/hooks/useSocket.ts             |  243 [31m-------[m
+ src/hooks/useTimeSync.ts           |   66 [31m--[m
+ src/index.css                      |  118 [31m----[m
+ src/main.tsx                       |   10 [31m-[m
+ src/utils/soundSynthesizer.ts      |  406 [31m-----------[m
+ src/utils/statsManager.ts          |  157 [31m-----[m
+ src/views/Dashboard.tsx            |  542 [31m---------------[m
+ src/views/GameScreen.tsx           |  393 [31m-----------[m
+ src/views/Landing.tsx              |   98 [31m---[m
+ src/views/LobbyView.tsx            |  186 [31m-----[m
+ src/views/Results.tsx              |  265 [31m--------[m
+ src/views/Toss.tsx                 |  170 [31m-----[m
+ tailwind.config.js                 |   32 [31m-[m
+ tsconfig.app.json                  |   26 [31m-[m
+ tsconfig.json                      |    5 [32m+[m[31m-[m
+ tsconfig.node.json                 |   23 [31m-[m
+ tsconfig.server.json               |   15 [31m-[m
+ vite.config.ts                     |   20 [31m-[m
+ 43 files changed, 232 insertions(+), 6614 deletions(-)
