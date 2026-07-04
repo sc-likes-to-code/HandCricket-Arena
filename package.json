@@ -12,6 +12,9 @@
     "client": "npm run dev --workspace=@handcricket/client",
     "server": "npm run dev --workspace=@handcricket/server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "npm run build:server",
+    "build:server": "npm run build --workspace=@handcricket/shared && npm run build --workspace=@handcricket/server",
+    "build:client": "npm run build --workspace=@handcricket/shared && npm run build --workspace=@handcricket/client",
     "build:all": "npm run build --workspace=@handcricket/shared && npm run build --workspace=@handcricket/server && npm run build --workspace=@handcricket/client"
   },
   "devDependencies": {

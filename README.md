@@ -70,13 +70,11 @@ Alternatively, you can run workspaces independently:
 
 ## Production Builds
 
-Before deploying, verify that both workspaces compile and build independently:
-```bash
-npm run build:all
-```
-This runs:
-*   `npm run build --workspace=@handcricket/client`: Compiles the React client using `tsc` and bundles assets inside `/client/dist`.
-*   `npm run build --workspace=@handcricket/server`: Compiles the server codebase using `tsc` to `/server/dist` for a production Node.js runtime (no dependency on `tsx` watch mode).
+Before deploying, verify that workspaces compile and build:
+*   `npm run build`: Compiles the shared package, then the server package (alias for `build:server`).
+*   `npm run build:server`: Compiles the shared package, then the server package.
+*   `npm run build:client`: Compiles the shared package, then the client package.
+*   `npm run build:all`: Compiles all packages (shared, server, and client) sequentially.
 
 ---
 
@@ -84,21 +82,22 @@ This runs:
 
 This workspace configuration is optimized for separate deployments:
 
-### Frontend (e.g., Vercel)
+### Frontend (Vercel)
 1.  Import this repository into Vercel.
 2.  Set the **Root Directory** option to `client`.
 3.  Configure the build commands:
-    *   **Build Command**: `npm run build`
+    *   **Build Command** (override default): `cd .. && npm run build:client`
     *   **Output Directory**: `dist`
 4.  Define environment variables:
-    *   `VITE_SERVER_URL`: URL of your deployed backend (e.g. `https://your-backend.railway.app`).
+    *   `VITE_SERVER_URL`: URL of your deployed backend (e.g. `https://your-backend.onrender.com`).
 
-### Backend (e.g., Railway)
-1.  Import this repository into Railway.
-2.  Configure the **Root Directory** or build command to run inside `server/`.
-3.  Configure the startup commands:
-    *   **Build Command**: `npm run build`
-    *   **Start Command**: `npm run start` (which executes `node dist/index.js`)
+### Backend (Render)
+1.  Import this repository into Render as a **Web Service**.
+2.  Leave the **Root Directory** as the repository root (empty/default).
+3.  Configure the build and start commands:
+    *   **Build Command**: `npm run build` (Builds `shared` and then `server`).
+    *   **Start Command**: `npm run start --workspace=@handcricket/server`
 4.  Define environment variables:
-    *   `PORT`: `3000` (automatically injected by Railway)
+    *   `PORT`: `3000` (Render will auto-bind if not specified, or use the injected port).
     *   `CLIENT_URL`: URL of your deployed frontend (e.g. `https://your-app.vercel.app`).
+    *   `NODE_ENV`: `production`

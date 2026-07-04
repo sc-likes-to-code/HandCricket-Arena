@@ -10,15 +10,15 @@
   },
   "dependencies": {
     "@handcricket/shared": "*",
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
-    "socket.io": "^4.8.3"
-  },
-  "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^24.13.2",
-    "tsx": "^4.23.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3",
     "typescript": "~6.0.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.0"
   }
 }
