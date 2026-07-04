@@ -1,14 +1,4 @@
-export type GameState =
-  | 'WAITING'
-  | 'LOBBY'
-  | 'READY'
-  | 'TOSS'
-  | 'BAT_OR_BOWL'
-  | 'FIRST_INNINGS'
-  | 'CHANGE_INNINGS'
-  | 'SECOND_INNINGS'
-  | 'RESULT'
-  | 'REMATCH';
+import type { GameState, MoveRecord } from './game.js';
 
 export interface Player {
   id: string; // cryptographically secure UUID
@@ -22,29 +12,6 @@ export interface Player {
   playAgain: boolean | null; // rematch choice (true = accept, false = decline, null = waiting)
   connected: boolean;
   disconnectedAt: number | null; // epoch time when disconnected for grace period
-}
-
-export interface MoveRecord {
-  turnNumber: number;
-  batterChoice: number;
-  bowlerChoice: number;
-  runsAdded: number;
-  isOut: boolean;
-  batterId: string;
-}
-
-export interface MatchMetadata {
-  matchId: string;
-  roomCode: string;
-  startTime: number;
-  endTime: number;
-  duration: number;
-  winnerId: string | null;
-  draw: boolean;
-  hostName: string;
-  guestName: string;
-  hostScore: number;
-  guestScore: number;
 }
 
 export interface GameRoom {
@@ -70,10 +37,4 @@ export interface GameRoom {
     isOut: boolean;
     batterId: string;
   } | null;
-}
-
-export interface AckResponse<T = any> {
-  success: boolean;
-  error?: string;
-  data?: T;
 }

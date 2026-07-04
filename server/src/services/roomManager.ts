@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { GameRoom, Player } from './types';
+import { GameRoom, Player } from '@handcricket/shared';
 
 // Exclude: 0, O, I, 1, L
 const ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';

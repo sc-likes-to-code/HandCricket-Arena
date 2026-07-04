@@ -1,4 +1,4 @@
-import { GameRoom, GameState, Player, MoveRecord } from './types';
+import { GameRoom, GameState, Player, MoveRecord } from '@handcricket/shared';
 
 export class GameStateMachine {
   /**

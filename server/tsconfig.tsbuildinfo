@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/game/statemachine.ts","./src/services/roommanager.ts","./src/socket/handlers/sockethandler.ts"],"version":"6.0.3"}

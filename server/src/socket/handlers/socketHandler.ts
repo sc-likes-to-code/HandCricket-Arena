@@ -1,7 +1,7 @@
 import { Server, Socket } from 'socket.io';
-import { RoomManager } from './roomManager';
-import { GameStateMachine } from './stateMachine';
-import { AckResponse, GameRoom } from './types';
+import { RoomManager } from '../../services/roomManager.js';
+import { GameStateMachine } from '../../game/stateMachine.js';
+import { AckResponse, GameRoom } from '@handcricket/shared';
 
 export class SocketHandler {
   private io: Server;
