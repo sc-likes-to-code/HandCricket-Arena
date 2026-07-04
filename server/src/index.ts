@@ -6,7 +6,7 @@ import { RoomManager } from './services/roomManager.js';
 import { SocketHandler } from './socket/handlers/socketHandler.js';
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = Number(process.env.PORT) || 3000;
 
 // Read CLIENT_URL environment variable to allow dynamic frontend origins.
 // Supports comma-separated list of origins (or '*' as fallback).
@@ -19,10 +19,10 @@ const corsOptions = {
   origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
     // Allow requests with no origin (like mobile apps, curl, or server-to-server)
     if (!origin) return callback(null, true);
-    
+
     // Always allow localhost/127.0.0.1 on any port for local testing
     const isLocalhost = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
-    
+
     if (isLocalhost || allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*')) {
       return callback(null, true);
     } else {
